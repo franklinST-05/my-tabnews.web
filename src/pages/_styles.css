@@ -5,4 +5,10 @@
 
 body {
     background-color: #030712;
+    color: #fff;
+}
+
+main {
+    padding-left: 52px;
+    padding-right: 52px;
 }
