@@ -11,6 +11,6 @@ const CardNews: React.FC = () => {
             <p className="text-sm text-gray-400 line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis et voluptatibus dignissimos est rem nisi expedita perferendis dicta illo libero consequatur iusto, similique natus accusamus autem! Alias iusto neque porro Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam culpa architecto ab doloribus ipsum fugit pariatur provident quos minima. Blanditiis, eum similique! Tempore, distinctio exercitationem repellat non consequatur vero saepe?</p>
         </div>
     );
-}
+};
 
 export default CardNews;

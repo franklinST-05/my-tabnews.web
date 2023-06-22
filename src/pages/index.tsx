@@ -1,7 +1,6 @@
 import Banner from '@/components/Banner';
 import CardNews from '@/components/CardNews';
 import Header from '@/components/Header';
-import Link from 'next/link';
 import React from 'react';
 
 const HomePage: React.FC = () => {
@@ -18,6 +17,6 @@ const HomePage: React.FC = () => {
 
         </main>
     );
-}
+};
 
 export default HomePage;

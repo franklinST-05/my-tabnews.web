@@ -8,6 +8,6 @@ const Header: React.FC = () => {
             <Link href="/">RECENTES</Link>
         </header>
     );
-}
+};
 
 export default Header;

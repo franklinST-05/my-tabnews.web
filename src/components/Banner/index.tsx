@@ -7,6 +7,6 @@ const Banner: React.FC = () => {
             <p className="text-base text-gray-400">Os melhores assuntos!</p>
         </section>
     );
-}
+};
 
 export default Banner;
