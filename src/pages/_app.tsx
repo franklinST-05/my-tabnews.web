@@ -9,8 +9,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <>
             <Head>
                 <title>Tabnews</title>
+                <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon"/>
             </Head>
-            
+
             <Header />
             <Component {...pageProps} />
         </>
