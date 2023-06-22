@@ -11,7 +11,7 @@ const Button: React.FC<HTMLAttributes<HTMLButtonElement>> = ({ className, ...pro
                 uppercase
                 placeholder:text-gray-400 outline-none
                 border border-gray-800
-                rounded-lg bg-green-700 hover:bg-green-800 focus:bg-green-800
+                rounded-lg bg-green-600
                 ${className}
             `}
         />
