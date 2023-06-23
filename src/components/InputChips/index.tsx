@@ -2,10 +2,11 @@ import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, use
 import Chip from '../Chip';
 
 interface InputChipsProps {
-    chip: Array<string>;
+    onSetChip:( chip: Array<string> ) => void;
+    placeholder?: string;
 }
 
-const InputChips: React.FC<InputChipsProps> = () => {
+const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
     const [chip, setChip] = useState<Array<string>>([]);
     const [value, setValue] = useState('');
 
@@ -17,6 +18,7 @@ const InputChips: React.FC<InputChipsProps> = () => {
             chip.push(partials[0].trim());
             setChip(chip);
             setValue('');
+            onSetChip(chip);
         } else if (value === ',') {
             setValue('');
         } else {
@@ -56,7 +58,7 @@ const InputChips: React.FC<InputChipsProps> = () => {
 
                 <input
                     className="flex-1 w-auto max-w-full bg-transparent outline-none text-sm"
-                    placeholder="Palavra chave"
+                    placeholder={placeholder}
                     value={value}
                     type="text"
                     onChange={handlerChange}
