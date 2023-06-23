@@ -4,17 +4,17 @@ import { FiEdit2, FiEye } from 'react-icons/fi';
 
 const Editor: React.FC = () => {
 
-    const [article, setArticle] = useState<string>('');
-    const [md, setMd] = useState<string>('');
+    const [editorMode, setEditorMode] = useState<boolean>(true);
+    const [textValue, setTextValue] = useState<string>('');
+    const [parsedMD, setParsedMD] = useState<string>('');
 
-    const change:ChangeEventHandler<HTMLTextAreaElement> = ({ target }) => {
-        setArticle(target.value);
+    const ChangeTextarea:ChangeEventHandler<HTMLTextAreaElement> = ({ target }) => {
+        setTextValue(target.value);
         const parsed = marked(target.value, {
             sanitize: true,
         });
-        setMd(parsed);
+        setParsedMD(parsed);
     };
-    const [editorMode, setEditorMode] = useState<boolean>(true);
 
     return (
         <div className="space-y-2">
@@ -28,13 +28,13 @@ const Editor: React.FC = () => {
                 {editorMode && (
                     <textarea
                         placeholder="Artigo"
-                        value={article}
-                        onChange={change}
+                        value={textValue}
+                        onChange={ChangeTextarea}
                         className="w-full h-full bg-transparent border-none outline-none resize-none"
                     />
                 )}
 
-                {!editorMode && ( <div className="editor-markdown relative" dangerouslySetInnerHTML={{ __html:  md}}/> )}
+                {!editorMode && ( <div className="editor-markdown relative" dangerouslySetInnerHTML={{ __html:  parsedMD}}/> )}
 
             </div>
         </div>
