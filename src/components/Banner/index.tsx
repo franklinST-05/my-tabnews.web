@@ -9,7 +9,7 @@ const Banner: React.FC = () => {
                 <p className="text-base text-gray-400">Os melhores assuntos!</p>
             </div>
             <div className="max-w-xl">
-                <Input placeholder="Pesquisar"/>
+                <Input placeholder="Pesquisar" type="search"/>
             </div>
         </section>
     );
