@@ -3,6 +3,10 @@
 @tailwind utilities;
 @tailwind variants;
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     background-color: #030712;
     color: #fff;
