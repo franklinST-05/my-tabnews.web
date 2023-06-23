@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useRef, useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useState } from 'react';
 import Chip from '../Chip';
 
 interface InputChipsProps {
@@ -51,25 +51,20 @@ const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
 
 
     return (
-        <div className="flex items-center gap-2 flex-wrap w-full transition-all px-4 py-4 bg-gray-800 rounded-lg" >
-            <div className="transition-all flex-1 flex items-center gap-2 flex-wrap  rounded-lg">
+        <div className="flex items-center gap-2 flex-wrap w-full transition-all p-2 bg-gray-800 rounded-lg" >
+            {chip.map((chip, index) => (
+                <Chip key={index} className="bg-gray-900">{chip}</Chip>
+            ))}
 
-                {chip.map((chip, index) => (
-                    <Chip key={index} className="bg-gray-900">{chip}</Chip>
-                ))}
-
-                <input
-                    className="flex-1 w-auto max-w-full bg-transparent outline-none text-sm"
-                    placeholder={placeholder}
-                    value={value}
-                    type="text"
-                    onChange={handlerChange}
-                    onKeyDown={handlerKeyDown}
-                    onBlur={handlerBlur}
-                />
-
-            </div>
-
+            <input
+                className="flex-1 w-auto max-w-full h-full bg-transparent outline-none text-sm p-2"
+                placeholder={placeholder}
+                value={value}
+                type="text"
+                onChange={handlerChange}
+                onKeyDown={handlerKeyDown}
+                onBlur={handlerBlur}
+            />
         </div>
     );
 };
