@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import Editor from '@/components/Editor';
 import Input from '@/components/Input';
+import InputChips from '@/components/InputChips';
 import Head from 'next/head';
 import React from 'react';
 
@@ -12,13 +13,14 @@ const PublishPage: React.FC = () => {
                 <title>Publicar · TabNews</title>
             </Head>
 
-            <form className="w-full max-w-4xl mt-10 mx-auto space-y-4">
+            <form className="w-full max-w-4xl mt-10 mx-auto space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
                     <h1 className="font-bold text-3xl">Publicar</h1>
                     <p className="text-sm text-gray-400">Pronto para inovar?</p>
                 </div>
 
                 <Input type="text" placeholder="Titulo" />
+                <InputChips chip={['nodejs', 'database']}/>
                 <Input type="text" placeholder="Descrição" />
                 <Editor/>
 
