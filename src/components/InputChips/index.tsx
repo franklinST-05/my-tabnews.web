@@ -1,24 +1,26 @@
-import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useEffect, useRef, useState } from 'react';
 import Chip from '../Chip';
 
 interface InputChipsProps {
-    onSetChip:( chip: Array<string> ) => void;
+    onSetChip: (chip: Array<string>) => void;
     placeholder?: string;
 }
 
 const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
     const [chip, setChip] = useState<Array<string>>([]);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string>('');
+
+    useEffect(() => {
+        onSetChip(chip);
+    }, [chip]);
 
     const handlerChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { value } = e.target;
         const partials = value.split(',');
 
         if (partials.length > 1 && partials.at(0) != '') {
-            chip.push(partials[0].trim());
-            setChip(chip);
             setValue('');
-            onSetChip(chip);
+            setChip([...chip, partials[0]]);
         } else if (value === ',') {
             setValue('');
         } else {
@@ -34,7 +36,7 @@ const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
             setChip(chip.slice(0, -1));
         } else if (e.key === 'Enter' && value.trim() != '') {
             e.preventDefault();
-            setChip(chip.concat(value));
+            setChip([...chip, value]);
             setValue('');
         }
     };
