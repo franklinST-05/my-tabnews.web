@@ -9,7 +9,8 @@ const Button: React.FC<ButtonProps> = ({ size, className, ...props }) => {
         <button
             {...props}
             className={`
-                block w-full
+                w-full
+                flex items-center gap-2
                 p-4 px-4
                 text-sm text-white
                 ${size === 'small' ? '!py-2.5 !px-2.5 max-w-max':''}
