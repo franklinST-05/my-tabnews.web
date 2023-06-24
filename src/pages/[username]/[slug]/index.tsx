@@ -17,9 +17,10 @@ const NewsPage: React.FC = () => {
 
                 <div>
                     <Editor
-                        title="Reponder"
+                        title="Responder"
                         description="Ajude ou complemente sobre o pensamento acima"
                         placeholder="Inspiri-se e dê sua melhor resposta"
+                        toggle
                         actions={(
                             <Button size="small">Responder</Button>
                         )}
