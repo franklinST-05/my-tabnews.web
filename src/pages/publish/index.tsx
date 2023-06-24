@@ -24,7 +24,11 @@ const PublishPage: React.FC = () => {
                 <Input type="text" placeholder="Titulo" />
                 <InputChips onSetChip={(c) => setKeywords(c)} placeholder="Palavras chaves"/>
                 <Input type="text" placeholder="Descrição" />
-                <Editor/>
+                <Editor
+                    title="Artigo"
+                    description="Compartilhe de sua ideia"
+                    placeholder="Se expresse e crie seu melhor ponto de vista"
+                />
 
                 <div className="flex items-center justify-end gap-4">
                     <Button className="max-w-max bg-transparent">Cancelar</Button>
