@@ -1,17 +1,20 @@
 import { marked } from 'marked';
 import React, { ChangeEventHandler, ReactNode, useState } from 'react';
-import { FiEdit2, FiEye } from 'react-icons/fi';
+import { FiChevronDown, FiChevronUp, FiEdit2, FiEye } from 'react-icons/fi';
 import Button from '../Button';
+
 
 interface EditorProps {
     title: string;
     description: string;
     placeholder?: string;
     actions?: ReactNode;
+    toggle?: boolean;
 }
 
-const Editor: React.FC<EditorProps> = ({ title, description, placeholder, actions }) => {
+const Editor: React.FC<EditorProps> = ({ toggle, title, description, placeholder, actions }) => {
 
+    const [visible, setVisible] = useState<boolean>(true);
     const [editorMode, setEditorMode] = useState<boolean>(true);
     const [textValue, setTextValue] = useState<string>('');
     const [parsedMD, setParsedMD] = useState<string>('');
@@ -26,16 +29,27 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder, action
 
     return (
         <div className="space-y-2">
-            <div className="flex flex-col w-full p-4 text-sm text-white placeholder:text-gray-400 border border-gray-800 rounded-lg bg-gray-800">
+            <div className="flex flex-col w-full p-4 pb-0 text-sm text-white placeholder:text-gray-400 border border-gray-800 rounded-lg bg-gray-800">
 
-                <div className="flex items-center justify-between border-b border-gray-700 pb-4">
-                    <div>
-                        <h1 className="text-xl font-bold">{title}</h1>
-                        <p className="text-sm text-gray-300 line-clamp-1">{description}</p>
-                    </div>
+                <div className="flex items-center justify-between pb-4">
                     <div className="flex items-center gap-4">
+                        {toggle && (
+                            <Button
+                                onClick={() => setVisible(!visible)}
+                                size="small"
+                                className="!bg-gray-900 text-xl">
+                                {visible ? <FiChevronDown /> : <FiChevronUp />}
+                            </Button>
+                        )}
+                        <div>
+                            <h1 className="text-xl font-bold">{title}</h1>
+                            <p className="text-sm text-gray-300 line-clamp-1">{description}</p>
+                        </div>
+                    </div>
+
+                    <div className={`flex items-center gap-4 transition-all ${visible ? 'opacity-0 invisible':''}`}>
                         {actions}
-                        <Button 
+                        <Button
                             size="small"
                             onClick={() => setEditorMode(!editorMode)}
                             className="!bg-gray-900 text-xl"
@@ -45,7 +59,7 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder, action
                     </div>
                 </div>
 
-                <div className="py-2">
+                <div className="border-t border-gray-700 py-4" hidden={visible}>
                     {editorMode && (
                         <textarea
                             placeholder={placeholder}
