@@ -1,14 +1,16 @@
 import { marked } from 'marked';
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { ChangeEventHandler, ReactNode, useState } from 'react';
 import { FiEdit2, FiEye } from 'react-icons/fi';
+import Button from '../Button';
 
 interface EditorProps {
     title: string;
     description: string;
     placeholder?: string;
+    actions?: ReactNode;
 }
 
-const Editor: React.FC<EditorProps> = ({ title, description, placeholder }) => {
+const Editor: React.FC<EditorProps> = ({ title, description, placeholder, actions }) => {
 
     const [editorMode, setEditorMode] = useState<boolean>(true);
     const [textValue, setTextValue] = useState<string>('');
@@ -31,9 +33,16 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder }) => {
                         <h1 className="text-xl font-bold">{title}</h1>
                         <p className="text-sm text-gray-300 line-clamp-1">{description}</p>
                     </div>
-                    <button type="button" onClick={() => setEditorMode(!editorMode)} className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center">
-                        {editorMode ? <FiEye /> : <FiEdit2 />}
-                    </button>
+                    <div className="flex items-center gap-4">
+                        {actions}
+                        <Button 
+                            size="small"
+                            onClick={() => setEditorMode(!editorMode)}
+                            className="!bg-gray-900 text-xl"
+                        >
+                            {editorMode ? <FiEye /> : <FiEdit2 />}
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="py-2">
@@ -45,7 +54,7 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder }) => {
                             className="w-full h-80 bg-transparent border-none outline-none resize-none"
                         />
                     )}
-                    
+
                     {!editorMode && (
                         <div className="block w-full h-80 overflow-y-scroll">
                             <div
