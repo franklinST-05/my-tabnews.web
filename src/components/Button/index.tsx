@@ -1,6 +1,10 @@
 import React, { HTMLAttributes } from 'react';
 
-const Button: React.FC<HTMLAttributes<HTMLButtonElement>> = ({ className, ...props }) => {
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+    size?: 'small' | 'larger',
+}
+
+const Button: React.FC<ButtonProps> = ({ size, className, ...props }) => {
     return (
         <button
             {...props}
@@ -8,6 +12,8 @@ const Button: React.FC<HTMLAttributes<HTMLButtonElement>> = ({ className, ...pro
                 block w-full
                 p-4 px-4
                 text-sm text-white
+                ${size === 'small' ? '!py-2.5 !px-2.5 max-w-max':''}
+                ${size === 'larger' ? '!py-4':''}
                 uppercase
                 placeholder:text-gray-400 outline-none
                 border border-gray-800
