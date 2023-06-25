@@ -1,7 +1,8 @@
 import Button from '@/components/Button';
+import CardComment from '@/components/CardComment';
 import Input from '@/components/Input';
 import React from 'react';
-import { FiAtSign, FiCoffee, FiShare2 } from 'react-icons/fi';
+import { FiCoffee, FiMessageSquare, FiShare2 } from 'react-icons/fi';
 
 const NewsPage: React.FC = () => {
     return (
@@ -56,35 +57,8 @@ const NewsPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-8">
-                    <div className="space-y-4">
-                        <div>
-                            <a href="/franklinst-05" className="text-sm font-medium text-gray-400">Franklinst-05</a>
-                            <p className="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nemo quidem veritatis soluta consequuntur! Laudantium sunt sapiente quisquam, iusto ipsam libero pariatur exercitationem. Nam, perferendis porro quo suscipit ducimus nisi?</p>
-                        </div>
-                        <div className="flex gap-4">
-                            <Button size="small" className="!bg-secondary">
-                                <FiCoffee />
-                            </Button>
-                            <Button size="small" className="!bg-secondary">
-                                <FiAtSign /> Mencionar
-                            </Button>
-                        </div>
-                    </div>
-
-                    <div className="space-y-4">
-                        <div>
-                            <a href="/franklinst-05" className="text-sm font-medium text-light/60">Franklinst-05</a>
-                            <p className="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nemo quidem veritatis soluta consequuntur! Laudantium sunt sapiente quisquam, iusto ipsam libero pariatur exercitationem. Nam, perferendis porro quo suscipit ducimus nisi?</p>
-                        </div>
-                        <div className="flex gap-4">
-                            <Button size="small" className="!bg-secondary">
-                                <FiCoffee />
-                            </Button>
-                            <Button size="small" className="!bg-secondary">
-                                <FiAtSign /> Mencionar
-                            </Button>
-                        </div>
-                    </div>
+                    <CardComment />
+                    <CardComment />
                 </div>
             </section>
         </main>
