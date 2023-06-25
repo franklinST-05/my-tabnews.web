@@ -20,7 +20,7 @@ const UserPage: React.FC = () => {
             <section className="py-8">
                 <div>
                     <h1 className="text-3xl font-bold">{name}</h1>
-                    <h2 className="text-base text-gray-400">{username}</h2>
+                    <h2 className="text-base text-desc">{username}</h2>
                 </div>
             </section>
             <section className="space-y-8">

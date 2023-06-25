@@ -7,10 +7,10 @@ const Input: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({ className, ...
             className={`
                 block w-full
                 p-4 px-4
-                text-sm text-white
-                placeholder:text-gray-400 outline-none
-                border border-gray-800
-                rounded-lg bg-gray-800
+                text-sm text-light
+                placeholder:text-light/50 outline-none
+                border border-secondary
+                rounded-lg bg-secondary
                 ${className}
             `}
         />

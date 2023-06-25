@@ -9,8 +9,8 @@ const NewsPage: React.FC = () => {
             <section className="max-w-5xl space-y-10">
                 <div>
                     <div className="py-4">
-                        <h1 className="text-lg text-white">FranklinST-05</h1>
-                        <p className="text-sm text-gray-400">200 Cafeinas</p>
+                        <h1 className="text-lg text-light">FranklinST-05</h1>
+                        <p className="text-sm text-desc">200 Cafeinas</p>
                     </div>
                     <div>
                         <div className="py-2">
@@ -32,11 +32,11 @@ const NewsPage: React.FC = () => {
 
                 <div className="space-y-4 max-w-2xl">
                     <div className="flex items-center gap-4">
-                        <Button size="small" className="!bg-gray-800">
+                        <Button size="small" className="!bg-secondary">
                             <FiCoffee />
                         </Button>
 
-                        <Button size="small" className="!bg-gray-800">
+                        <Button size="small" className="!bg-secondary">
                             <FiShare2 /> Compartilhar
                         </Button>
                     </div>
@@ -47,11 +47,11 @@ const NewsPage: React.FC = () => {
                 <div className="py-6 space-y-4">
                     <div>
                         <h1 className="text-lg font-medium">22 Comentarios</h1>
-                        <p className="text-xs font-regular text-gray-300">Participe da interação</p>
+                        <p className="text-xs font-regular text-desc">Participe da interação</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <Input className="bg-transparent" placeholder="Adicionar comentario" />
-                        <Button className="max-w-max !bg-gray-800">Enviar</Button>
+                        <Button className="max-w-max !bg-secondary">Enviar</Button>
                     </div>
                 </div>
 
@@ -62,10 +62,10 @@ const NewsPage: React.FC = () => {
                             <p className="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nemo quidem veritatis soluta consequuntur! Laudantium sunt sapiente quisquam, iusto ipsam libero pariatur exercitationem. Nam, perferendis porro quo suscipit ducimus nisi?</p>
                         </div>
                         <div className="flex gap-4">
-                            <Button size="small" className="!bg-gray-800">
+                            <Button size="small" className="!bg-secondary">
                                 <FiCoffee />
                             </Button>
-                            <Button size="small" className="!bg-gray-800">
+                            <Button size="small" className="!bg-secondary">
                                 <FiAtSign /> Mencionar
                             </Button>
                         </div>
@@ -73,14 +73,14 @@ const NewsPage: React.FC = () => {
 
                     <div className="space-y-4">
                         <div>
-                            <a href="/franklinst-05" className="text-sm font-medium text-gray-400">Franklinst-05</a>
+                            <a href="/franklinst-05" className="text-sm font-medium text-light/60">Franklinst-05</a>
                             <p className="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nemo quidem veritatis soluta consequuntur! Laudantium sunt sapiente quisquam, iusto ipsam libero pariatur exercitationem. Nam, perferendis porro quo suscipit ducimus nisi?</p>
                         </div>
                         <div className="flex gap-4">
-                            <Button size="small" className="!bg-gray-800">
+                            <Button size="small" className="!bg-secondary">
                                 <FiCoffee />
                             </Button>
-                            <Button size="small" className="!bg-gray-800">
+                            <Button size="small" className="!bg-secondary">
                                 <FiAtSign /> Mencionar
                             </Button>
                         </div>

@@ -13,7 +13,7 @@ const Chip: React.FC<ChipProps> = ({ children, className }) => {
                 inline-block
                 px-3 py-1.5
                 rounded-lg
-                bg-gray-800
+                bg-secondary-ab
                 uppercase text-xs font-bold select-none
                 ${className}
             `}

@@ -18,7 +18,7 @@ const PublishPage: React.FC = () => {
             <form className="w-full max-w-4xl mt-10 mx-auto space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
                     <h1 className="font-bold text-3xl">Publicar</h1>
-                    <p className="text-sm text-gray-400">Pronto para inovar?</p>
+                    <p className="text-sm text-desc">Pronto para inovar?</p>
                 </div>
 
                 <Input type="text" placeholder="Titulo" />
@@ -26,6 +26,7 @@ const PublishPage: React.FC = () => {
                 <Input type="text" placeholder="Descrição" />
                 <Editor
                     title="Artigo"
+                    
                     description="Compartilhe de sua ideia"
                     placeholder="Se expresse e crie seu melhor ponto de vista"
                 />

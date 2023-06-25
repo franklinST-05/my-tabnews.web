@@ -33,7 +33,7 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder, action
                     <div className="flex items-center gap-4">
                         <div>
                             <h1 className="text-xl font-bold">{title}</h1>
-                            <p className="text-sm text-gray-300 line-clamp-1">{description}</p>
+                            <p className="text-sm text-light/50 line-clamp-1">{description}</p>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@ const Editor: React.FC<EditorProps> = ({ title, description, placeholder, action
                         <Button
                             size="small"
                             onClick={() => setEditorMode(!editorMode)}
-                            className="!bg-gray-900"
+                            className="!bg-secondary-ab"
                         >
                             {editorMode ? <FiEye /> : <FiEdit2 />}
                         </Button>

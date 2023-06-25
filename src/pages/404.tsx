@@ -16,7 +16,7 @@ const ErrorNotFoundPage: React.FC = () => {
                 <Image src={Icon} height={130} width={130} alt="Pagina não encontrada"/>
                 <div className="space-y-2">
                     <h1 className="text-3xl font-bold">Onde estou?</h1>
-                    <Link href="/" className="text-blue-600">Retornar à tela inicial</Link>
+                    <Link href="/" className="text-info">Retornar à tela inicial</Link>
                 </div>
             </div>
         </main>

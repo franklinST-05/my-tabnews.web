@@ -8,8 +8,8 @@ interface QuestionLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 const QuestionLink: React.FC<QuestionLinkProps> = ({ question, className, ...props }) => {
     return (
-        <span className="block space-x-2 text-gray-300">
-            {question} <Link {...props} className={` text-blue-600 ${className} `} />
+        <span className="block space-x-2 text-light/70">
+            {question} <Link {...props} className={` text-info ${className} `} />
         </span>
     );
 };

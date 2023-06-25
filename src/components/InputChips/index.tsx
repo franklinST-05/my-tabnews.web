@@ -51,7 +51,7 @@ const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
 
 
     return (
-        <div className="flex items-center gap-2 flex-wrap w-full transition-all p-2 bg-gray-800 rounded-lg" >
+        <div className="flex items-center gap-2 flex-wrap w-full transition-all p-2 bg-secondary rounded-lg" >
             {chip.map((chip, index) => (
                 <Chip key={index} className="bg-gray-900">{chip}</Chip>
             ))}
