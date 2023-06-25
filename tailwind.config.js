@@ -19,7 +19,7 @@ module.exports = {
                 dark: '#000',
             },
             textColor: {
-                desc: '#668'
+                desc: '#76768b'
             }
         },
     },
