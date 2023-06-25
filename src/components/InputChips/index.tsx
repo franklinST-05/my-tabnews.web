@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, use
 import Chip from '../Chip';
 
 interface InputChipsProps {
-    onSetChip: (chip: Array<string>) => void;
+    onSetChip?: (chip: Array<string>) => void;
     placeholder?: string;
 }
 
@@ -10,9 +10,12 @@ const InputChips: React.FC<InputChipsProps> = ({ onSetChip, placeholder }) => {
     const [chip, setChip] = useState<Array<string>>([]);
     const [value, setValue] = useState<string>('');
 
-    useEffect(() => {
-        onSetChip(chip);
-    }, [chip]);
+    if (onSetChip) {
+
+        useEffect(() => {
+            onSetChip(chip);
+        }, [chip]);
+    }
 
     const handlerChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { value } = e.target;
