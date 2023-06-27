@@ -1,7 +1,7 @@
 import { UserModel } from './User';
 
 export interface PostModel {
-    id: number;
+    id: string;
     title: string;
     slug: string;
     description: string;
