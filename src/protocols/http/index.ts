@@ -1,0 +1,1 @@
+export type HttpResponse = { error: string } | { data: object };
