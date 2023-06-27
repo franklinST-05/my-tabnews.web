@@ -20,7 +20,7 @@ const SigninPage: React.FC = () => {
                 <Input type="password" placeholder="Senha"/>
                 <Button>Entrar</Button>
                 <QuestionLink 
-                    href="/signup"
+                    href="/auth/signup"
                     question="Ainda não possui uma conta?"
                 > Criar </QuestionLink>
             </form>
