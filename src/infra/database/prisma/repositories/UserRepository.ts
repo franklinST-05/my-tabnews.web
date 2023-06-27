@@ -1,5 +1,5 @@
 import { UserModel } from '@/domain/models/User';
-import { CreateUserModel, FindUserByEmailModel, FindUserByEmailOrUsernameModel, FindUserByUsernameModel, UserRepo } from '@/domain/usecases/User';
+import { CreateUserModel, FindUserByEmailModel, FindUserByEmailOrUsernameModel, FindUserByUsernameModel, UpdateUserModel, UserRepo } from '@/domain/usecases/User';
 import client from '../client';
 
 export class UserRepository implements UserRepo {
@@ -27,6 +27,13 @@ export class UserRepository implements UserRepo {
             where: {
                 OR: [ { email }, { username } ]
             }
+        });
+    }
+
+    async update({ id, ...changes }: UpdateUserModel): Promise<UserModel> {
+        return await client.user.update({
+            where: { id },
+            data: { ...changes }
         });
     }
 
