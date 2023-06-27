@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String     @id @unique @default(uuid())
+  name     String
+  username String     @unique
+  email    String     @unique
+  password String
+  verified Boolean    @default(false)
+  Post     Post[]
+  Response Response[]
+
+  @@map("tb_user")
+}
+
+model Post {
+  id          String     @id @unique @default(uuid())
+  title       String
+  slug        String     @unique
+  description String
+  body        String
+  caffeine    Int        @default(0)
+  User        User       @relation(fields: [user_id], references: [id])
+  user_id     String
+  Response    Response[]
+
+  @@map("tb_post")
+}
+
+model Response {
+  id                 String     @id @unique @default(uuid())
+  body               String
+  caffeine           Int        @default(0)
+  user               User       @relation(fields: [user_id], references: [id])
+  user_id            String
+  post               Post       @relation(fields: [post_id], references: [id])
+  post_id            String
+  Response           Response[] @relation("response_parent")
+  ResponseParent     Response?  @relation("response_parent", fields: [response_parent_id], references: [id])
+  response_parent_id String?
+
+  @@map("tb_response")
+}
