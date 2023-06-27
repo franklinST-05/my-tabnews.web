@@ -1,5 +1,5 @@
 import { UserModel } from '@/domain/models/User';
-import { CreateUserModel, FindUserByEmailModel, FindUserByUsernameModel, UserRepo } from '@/domain/usecases/User';
+import { CreateUserModel, FindUserByEmailModel, FindUserByEmailOrUsernameModel, FindUserByUsernameModel, UserRepo } from '@/domain/usecases/User';
 import client from '../client';
 
 export class UserRepository implements UserRepo {
@@ -19,6 +19,14 @@ export class UserRepository implements UserRepo {
     async findByUsername({ username }: FindUserByUsernameModel): Promise<UserModel | null> {
         return await client.user.findUnique({
             where: { username }
+        });
+    }
+
+    async findByEmailOrUsername({ email, username }: FindUserByEmailOrUsernameModel): Promise<UserModel | null> {
+        return await client.user.findFirst({
+            where: {
+                OR: [ { email }, { username } ]
+            }
         });
     }
 
