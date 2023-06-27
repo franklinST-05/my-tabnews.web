@@ -4,7 +4,7 @@ interface VerifyEmailTemplateProps {
 
 export default function verifyEmailTemplate(props: VerifyEmailTemplateProps) {
 
-    const path = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/active-account/' : 'https://clone-tabnews.com.br/active-account/';
+    const path = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/auth/active/' : 'https://clone-tabnews.com.br/auth/active/';
 
     return /*html*/`
         
