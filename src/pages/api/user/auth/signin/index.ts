@@ -1,8 +1,10 @@
 import repos from '@/infra/database';
 import { HttpResponse } from '@/protocols/http';
+import { AuthUserSchema } from '@/schemas/User';
 import { cryptography } from '@/utils/cryptography';
 import { jwt } from '@/utils/jwt';
 import routerHandler from '@/utils/router-handler';
+import { schemaHandler } from '@/utils/schema-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
 
@@ -11,6 +13,13 @@ const router = createRouter<NextApiRequest, NextApiResponse<HttpResponse>>();
 router.post(async (req, res) => {
     const { password } = req.body;
     const email = String(req.body.email).toLocaleLowerCase();
+
+    const { error } = schemaHandler(AuthUserSchema, { email, password });
+    if(error) {
+        return res.status(400).json({
+            error
+        });
+    }
 
     const existsUser = await repos.user.findByEmail({ email });
     if (!existsUser) {
@@ -24,7 +33,7 @@ router.post(async (req, res) => {
             error: 'Usuario não verificado'
         });
     }
-    
+
     const validPass = await cryptography.compare(password, existsUser.password);
     if (!validPass) {
         return res.status(400).json({
