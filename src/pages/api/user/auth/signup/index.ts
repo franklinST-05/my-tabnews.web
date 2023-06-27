@@ -1,10 +1,12 @@
 import repos from '@/infra/database';
 import { HttpResponse } from '@/protocols/http';
+import { CreateUserSchema } from '@/schemas/User';
 import { cryptography } from '@/utils/cryptography';
 import { jwt } from '@/utils/jwt';
 import mail from '@/utils/mail';
 import verifyEmailTemplate from '@/utils/mail/templates/verify-email';
 import routerHandler from '@/utils/router-handler';
+import { schemaHandler } from '@/utils/schema-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
 
@@ -13,6 +15,13 @@ const router = createRouter<NextApiRequest, NextApiResponse<HttpResponse>>();
 router.post(async (req, res) => {
     const { name, username, password } = req.body;
     const email = String(req.body.email).toLocaleLowerCase();
+
+    const { error } = schemaHandler(CreateUserSchema, { name, username, password, email });
+    if(error) {
+        return res.status(400).json({
+            error
+        });
+    }
 
     const existsUser = await repos.user.findByEmailOrUsername({ username, email });
     if (existsUser) {
