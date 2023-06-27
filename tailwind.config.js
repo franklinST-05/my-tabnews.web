@@ -12,7 +12,7 @@ module.exports = {
                 secondary: '#1F2937',
                 'secondary-ab': '#111827',
                 success: '#2f2',
-                danger: '#f22',
+                danger: '#f67',
                 warn: '#ff1',
                 info: '#58f',
                 light: '#fff',
