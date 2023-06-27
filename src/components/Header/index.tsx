@@ -10,7 +10,7 @@ const Header: React.FC = () => {
             </nav>
 
             <nav className="flex items-center justify-center gap-4">
-                <Link href="/signin">ENTRAR</Link>
+                <Link href="/auth/signin">ENTRAR</Link>
             </nav>
         </header>
     );
