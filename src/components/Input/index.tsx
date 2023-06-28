@@ -17,6 +17,7 @@ const Input: React.FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({ 
                     placeholder:text-light/50 outline-none
                     border border-secondary
                     rounded-lg bg-secondary
+                    autofill:bg-secondary
                     ${className}
                 `}
             />

@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Signup: React.FC = () => {
-    
+
     const router = useRouter();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -38,7 +38,7 @@ const Signup: React.FC = () => {
                 <title>Cadastro · TabNews</title>
             </Head>
 
-            <ToastContainer/>
+            <ToastContainer />
 
             <form className="w-full max-w-lg mt-10 mx-auto space-y-4" onSubmit={handleSignup}>
                 <div>
