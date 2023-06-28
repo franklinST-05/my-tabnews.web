@@ -29,9 +29,15 @@ const SigninPage: React.FC = () => {
             router.push('/');
         } catch (err) {
             if(err instanceof AxiosError) {
-                toast(err.response?.data.error);
+                const { status } = err.response!;
+                if(status === 401) {
+                    toast('Le enviamos um email de verificação');
+                    axios.post('/api/user/auth/signup/resend-email', fields);
+                } else {
+                    toast('Erro interno, tente novamente em alguns minutos');
+                }
+
             }
-            toast('Erro interno, tente novamente em alguns minutos');
         }
     });
 
