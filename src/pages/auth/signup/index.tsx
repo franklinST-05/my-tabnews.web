@@ -10,7 +10,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Signup: React.FC = () => {
+const SignupPage: React.FC = () => {
 
     const router = useRouter();
 
@@ -84,4 +84,4 @@ const Signup: React.FC = () => {
     );
 };
 
-export default Signup;
+export default SignupPage;
