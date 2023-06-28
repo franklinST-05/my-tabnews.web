@@ -69,4 +69,26 @@ const ResendEmailUserSchema = UserSchema.pick({
     email: true,
 });
 
-export { UserSchema, CreateUserSchema, AuthUserSchema, ResendEmailUserSchema };
+const ForgotPasswordUserSchema = UserSchema.pick({
+    email: true,
+});
+
+const UpdatePasswordUserSchema = z.object({
+    password: z
+        .string({
+            description: 'A senha deve ser uma sequência de caracteres',
+            invalid_type_error: 'A senha deve ser uma sequência de caracteres',
+            required_error: 'A senha é obrigatória',
+        })
+        .min(6, 'A senha deve ter pelo menos 6 caracteres'),
+        
+    confirmPassword: z
+        .string({
+            description: 'A senha de confirmação deve ser uma sequência de caracteres',
+            invalid_type_error: 'A senha de confirmação deve ser uma sequência de caracteres',
+            required_error: 'A senha de confirmação é obrigatória',
+        })
+        .min(6, 'A senha de confirmação deve ter pelo menos 6 caracteres'),
+});
+
+export { UserSchema, CreateUserSchema, AuthUserSchema, ResendEmailUserSchema, ForgotPasswordUserSchema, UpdatePasswordUserSchema };
