@@ -28,11 +28,14 @@ const SigninPage: React.FC = () => {
 
             router.push('/');
         } catch (err) {
-            if(err instanceof AxiosError) {
+            if (err instanceof AxiosError) {
                 const { status } = err.response!;
-                if(status === 401) {
-                    toast('Le enviamos um email de verificação');
-                    axios.post('/api/user/auth/signup/resend-email', fields);
+                if (status === 401) {
+                    axios.post('/api/user/auth/signup/resend-email', fields).then(() => {
+                        router.push('/auth/signup/confirm');
+                    }).catch(() => {
+                        toast('Tente novamente em alguns minutos');
+                    });
                 } else {
                     toast('Erro interno, tente novamente em alguns minutos');
                 }
@@ -47,7 +50,7 @@ const SigninPage: React.FC = () => {
                 <title>Login · TabNews</title>
             </Head>
 
-            <ToastContainer/>
+            <ToastContainer />
 
             <form className="w-full max-w-lg mt-10 mx-auto space-y-4" onSubmit={handleSignin}>
                 <div>
