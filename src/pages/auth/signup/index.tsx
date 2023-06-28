@@ -5,12 +5,15 @@ import { CreateUserSchema } from '@/schemas/User';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Signup: React.FC = () => {
     
+    const router = useRouter();
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(CreateUserSchema),
     });
@@ -18,7 +21,7 @@ const Signup: React.FC = () => {
     const handleSignup = handleSubmit(async (fields) => {
         try {
             await axios.post('/api/user/auth/signup', fields);
-            toast('Verifique seu email');
+            router.push('/auth/signup/confirm');
         } catch(err) {
             if(err instanceof AxiosError) {
                 const { status, data } = err.response!;
