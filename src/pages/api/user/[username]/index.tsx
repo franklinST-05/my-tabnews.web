@@ -18,7 +18,7 @@ router.get(async (req, res) => {
 
     const { name, email, verified } = existsUser;
 
-    return res.status(201).json({
+    return res.status(200).json({
         data: {
             user: { name, username, email, verified }
         }
