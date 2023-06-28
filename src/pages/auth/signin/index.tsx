@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { setCookie } from 'cookies-next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -32,12 +33,12 @@ const SigninPage: React.FC = () => {
                 const { status } = err.response!;
                 if (status === 401) {
                     axios.post('/api/user/auth/signup/resend-email', fields).then(() => {
-                        router.push('/auth/signup/confirm');
+                        router.push('/auth/check-email');
                     }).catch(() => {
                         toast('Tente novamente em alguns minutos');
                     });
                 } else {
-                    toast('Erro interno, tente novamente em alguns minutos');
+                    toast(err.response?.data.error);
                 }
 
             }
@@ -63,12 +64,16 @@ const SigninPage: React.FC = () => {
                     type="email"
                     placeholder="Email"
                 />
-                <Input
-                    {...register('password')}
-                    error={errors['password']?.message as string}
-                    type="password"
-                    placeholder="Senha"
-                />
+                <div className="w-full">
+                    <Input
+                        {...register('password')}
+                        error={errors['password']?.message as string}
+                        type="password"
+                        placeholder="Senha"
+                    />
+                    <Link href="/auth/forgot-password" className="text-info text-sm">Esqueceu a senha?</Link>
+                </div>
+
                 <Button>Entrar</Button>
                 <QuestionLink
                     href="/auth/signup"

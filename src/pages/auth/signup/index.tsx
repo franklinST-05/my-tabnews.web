@@ -21,7 +21,7 @@ const SignupPage: React.FC = () => {
     const handleSignup = handleSubmit(async (fields) => {
         try {
             await axios.post('/api/user/auth/signup', fields);
-            router.push('/auth/signup/confirm');
+            router.push('/auth/check-email');
         } catch(err) {
             if(err instanceof AxiosError) {
                 const { status, data } = err.response!;
