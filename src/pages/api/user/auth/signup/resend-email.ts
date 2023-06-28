@@ -45,8 +45,6 @@ router.post(async (req, res) => {
         to: email,
     });
 
-    console.log(verification_token);
-
     sendedMail.catch(() => {
         return res.status(500).json({
             error: 'Erro ao enviar o email'
