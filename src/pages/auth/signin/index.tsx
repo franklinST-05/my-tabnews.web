@@ -32,7 +32,7 @@ const SigninPage: React.FC = () => {
             if (err instanceof AxiosError) {
                 const { status } = err.response!;
                 if (status === 401) {
-                    axios.post('/api/user/auth/signup/resend-email', fields).then(() => {
+                    axios.post('/api/user/auth/signup/active/resend-email', fields).then(() => {
                         router.push('/auth/check-email');
                     }).catch(() => {
                         toast('Tente novamente em alguns minutos');

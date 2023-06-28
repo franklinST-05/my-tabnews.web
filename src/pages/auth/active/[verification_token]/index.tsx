@@ -14,7 +14,7 @@ const ActiveAccountPage: React.FC = () => {
 
     const verificationTokenHandle = async (token: string) => {
         try {
-            await axios.get('/api/user/auth/' + token);
+            await axios.get('/api/user/auth/signup/active/' + token);
             router.push('/auth/signin');
         } catch (err) {
             if (err instanceof AxiosError) {
