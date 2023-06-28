@@ -1,26 +1,21 @@
 import CardNews from '@/components/CardNews';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
-import { FiGithub, FiMail } from 'react-icons/fi';
 
-const UserPage: React.FC = () => {
 
-    const router = useRouter();
-    const { username } = router.query;
-    const name = 'Franklin';
-    const email = 'franklinteixeira205@gmail.com';
-
+const UserPage: React.FC<ServerSideResponse> = ({ user }) => {
+    
     return (
         <main>
             <Head>
-                <title>{username} · TabNews</title>
+                <title>{user.username} · TabNews</title>
             </Head>
             <section className="py-8">
                 <div>
-                    <h1 className="text-3xl font-bold">{name}</h1>
-                    <h2 className="text-base text-desc">{username}</h2>
+                    <h1 className="text-3xl font-bold">{user.name}</h1>
+                    <h2 className="text-base text-desc">{user.username}</h2>
                 </div>
             </section>
             <section className="space-y-8">
@@ -29,6 +24,31 @@ const UserPage: React.FC = () => {
             </section>
         </main>
     );
+};
+
+interface ServerSideResponse {
+    user: {
+        name: string;
+        username: string;
+        email: string;
+        verified: boolean;
+    }
+}
+
+export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async (context) => {
+
+    try {
+        const { username } = context.query;
+        const { data } = await axios.get('http://localhost:3000/api/user/' + username);
+        
+        return {
+            props: { ...data.data }
+        };
+
+    } catch (err) {
+        return { notFound: true };
+    }
+
 };
 
 export default UserPage;
