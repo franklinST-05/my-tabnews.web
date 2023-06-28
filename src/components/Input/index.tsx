@@ -1,13 +1,14 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, forwardRef } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    error?: string;
+    error?: string | undefined;
 }
 
-const Input: React.FC<InputProps> = ({ className, error, ...props }) => {
+const Input: React.FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({ error, className, ...props }, ref) => {
     return (
         <div>
             <input
+                ref={ref}
                 {...props}
                 className={`
                     block w-full
@@ -24,6 +25,6 @@ const Input: React.FC<InputProps> = ({ className, error, ...props }) => {
             )}
         </div>
     );
-};
+});
 
 export default Input;
