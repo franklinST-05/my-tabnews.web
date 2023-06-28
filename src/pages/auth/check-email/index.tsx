@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
-import Icon from '../../../../../public/favicon.svg';
+import Icon from '../../../../public/favicon.svg';
 
-const ConfirmPage: React.FC = () => {
+const CheckEmailPage: React.FC = () => {
     return (
         <main className="flex items-center justify-center text-center">
             <Head>
@@ -22,4 +22,4 @@ const ConfirmPage: React.FC = () => {
     );
 };
 
-export default ConfirmPage;
+export default CheckEmailPage;
