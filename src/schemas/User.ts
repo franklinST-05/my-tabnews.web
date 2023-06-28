@@ -65,10 +65,8 @@ const AuthUserSchema = UserSchema.pick({
     password: true,
 });
 
-const DetailsUserSchema = UserSchema.pick({
-    name: true,
+const ResendEmailUserSchema = UserSchema.pick({
     email: true,
-    username: true,
 });
 
-export { UserSchema, CreateUserSchema, AuthUserSchema, DetailsUserSchema };
+export { UserSchema, CreateUserSchema, AuthUserSchema, ResendEmailUserSchema };
