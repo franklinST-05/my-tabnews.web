@@ -6,7 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({ error, className, ...props }, ref) => {
     return (
-        <div>
+        <div className="w-full">
             <input
                 ref={ref}
                 {...props}
