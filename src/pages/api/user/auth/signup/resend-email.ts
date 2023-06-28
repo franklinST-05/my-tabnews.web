@@ -12,10 +12,10 @@ import { createRouter } from 'next-connect';
 const router = createRouter<NextApiRequest, NextApiResponse<HttpResponse>>();
 
 router.post(async (req, res) => {
-    const { name, username } = req.body;
+    const { username } = req.body;
     const email = String(req.body.email).toLocaleLowerCase();
 
-    const { error } = schemaHandler(DetailsUserSchema, { name, username, email });
+    const { error } = schemaHandler(DetailsUserSchema, { username, email });
     if(error) {
         return res.status(400).json({
             error
@@ -35,9 +35,9 @@ router.post(async (req, res) => {
         });
     }
 
-    const verification_token = jwt.sign({ name, username, email }, {
+    const verification_token = jwt.sign({ id: existsUser.id, email }, {
         expiresIn: '10m',
-        subject: name
+        subject: existsUser.id,
     });
 
     const sendedMail = mail.sendMail({

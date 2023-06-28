@@ -32,16 +32,16 @@ router.post(async (req, res) => {
     }
 
     const encryptedPass = await cryptography.hash(password);
-    await repos.user.create({
+    const { id } = await repos.user.create({
         name,
         username,
         email,
         password: encryptedPass,
     });
 
-    const verification_token = jwt.sign({ name, username, email }, {
+    const verification_token = jwt.sign({ id, username, email }, {
         expiresIn: '10m',
-        subject: name
+        subject: id,
     });
 
     const sendedMail = mail.sendMail({
