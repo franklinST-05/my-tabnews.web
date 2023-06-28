@@ -21,7 +21,7 @@ const Signup: React.FC = () => {
         console.log(fields);
         try {
             await axios.post('/api/user/auth/forgot-password', fields);
-            router.push('/auth/signup/confirm');
+            router.push('/auth/check-email');
         } catch (err) {
             if (err instanceof AxiosError) {
                 toast('Erro interno, tente novamente em alguns minutos');
