@@ -7,5 +7,5 @@ export interface ResponseModel {
     post_id: PostModel['id'];
     user_id: UserModel['id'];
     body: string;
-    caffeine: number;
+    likedBy: Array<UserModel>;
 }
