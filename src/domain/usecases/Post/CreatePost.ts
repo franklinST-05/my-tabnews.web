@@ -5,6 +5,7 @@ export interface CreatePostModel {
     title: string;
     slug: string;
     description: string;
+    categories: Array<string>
     body: string;
     user_id: UserModel['id']
 }
