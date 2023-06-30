@@ -1,3 +1,4 @@
+import { UserDTO } from '@/dtos/UserDTO';
 import repos from '@/infra/database';
 import { HttpResponse } from '@/protocols/http';
 import routerHandler from '@/utils/router-handler';
@@ -16,12 +17,9 @@ router.get(async (req, res) => {
         });
     }
 
-    const { name, email, verified } = existsUser;
-
+    const user = new UserDTO(existsUser);
     return res.status(200).json({
-        data: {
-            user: { name, username, email, verified }
-        }
+        data: { user }
     });
 });
 
