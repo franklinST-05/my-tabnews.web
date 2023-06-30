@@ -19,6 +19,16 @@ const PostSchema = z.object({
         .min(3, 'O titulo deve conter no mínimo 3 caracteres')
         .nonempty('O titulo não pode ser vazio'),
 
+    categories: z
+        .array(
+            z.string({
+                description: 'As categorias devem ser válidas',
+                invalid_type_error: 'As categorias devem ser válidas',
+                required_error: 'As cateorias são necessárias',
+            }).trim().nonempty('O nome das categorias não podem ser vazias')
+        )
+        .optional(),
+
     slug: z
         .string({
             description: 'O slug deve ser válido',
@@ -50,6 +60,7 @@ const PostSchema = z.object({
 const CreatePostSchema = PostSchema.pick({
     title: true,
     slug: true,
+    categories: true,
     description: true,
     body: true,
 });
