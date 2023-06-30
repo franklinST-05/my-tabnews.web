@@ -1,5 +1,5 @@
 import { PostModel } from '@/domain/models/Post';
-import { CreatePostModel, PostRepo } from '@/domain/usecases/Post';
+import { CreatePostModel, FindPostBySlugModel, PostRepo } from '@/domain/usecases/Post';
 import client from '../client';
 
 export class PostRepository implements PostRepo {
@@ -24,6 +24,12 @@ export class PostRepository implements PostRepo {
             }
         });
 
+    }
+
+    async findBySlug({ slug }: FindPostBySlugModel): Promise<PostModel | null> {
+        return await client.post.findUnique({
+            where: { slug }
+        });
     }
 
 }
