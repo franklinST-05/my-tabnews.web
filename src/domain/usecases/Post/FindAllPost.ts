@@ -1,4 +1,5 @@
 import { PostModel } from '@/domain/models/Post';
+import { UserModel } from '@/domain/models/User';
 
 export interface FindAllPostModel {
     Options?: {
@@ -8,6 +9,13 @@ export interface FindAllPostModel {
     } 
 }
 
+export interface FindAllPostResponse extends PostModel {
+    User: {
+        name: UserModel['name'];
+        username: UserModel['username'];
+    }
+}
+
 export interface FindAllPost {
-    findAll(post: FindAllPostModel): Promise<[] | PostModel[]>
+    findAll(post: FindAllPostModel): Promise<[] | FindAllPostResponse[]>
 }
