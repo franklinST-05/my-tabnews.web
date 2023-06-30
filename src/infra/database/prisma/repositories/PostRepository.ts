@@ -1,5 +1,5 @@
 import { PostModel } from '@/domain/models/Post';
-import { CreatePostModel, FindPostBySlugModel, FindPostByUserModel, PostRepo } from '@/domain/usecases/Post';
+import { CreatePostModel, FindAllPostModel, FindPostBySlugModel, FindPostByUserModel, PostRepo } from '@/domain/usecases/Post';
 import client from '../client';
 
 export class PostRepository implements PostRepo {
@@ -37,6 +37,27 @@ export class PostRepository implements PostRepo {
             where: { User: { username } },
             skip: Options?.skip,
             take: Options?.take
+        });
+    }
+
+    async findAll({ Options }: FindAllPostModel): Promise<[] | PostModel[]> {
+
+        let orderObject: object = {
+            title: 'asc',
+        };
+
+        if(Options?.by == 'RELEVANT') {
+            orderObject = {
+                UsersLiked: {
+                    _count: 'asc',
+                }
+            };
+        }
+
+        return await client.post.findMany({
+            orderBy: orderObject,
+            skip: Options?.skip,
+            take: Options?.take,
         });
     }
 
