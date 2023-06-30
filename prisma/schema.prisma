@@ -8,42 +8,70 @@ datasource db {
 }
 
 model User {
-  id       String     @id @unique @default(uuid())
-  name     String
-  username String     @unique
-  email    String     @unique
-  password String
-  verified Boolean    @default(false)
-  Post     Post[]
-  Response Response[]
+  id             String                 @id @unique @default(uuid())
+  name           String
+  username       String                 @unique
+  email          String                 @unique
+  password       String
+  verified       Boolean                @default(false)
+  Post           Post[]
+  LikedPosts     UserOnLikedPosts[]
+  LikedResponses UserOnLikedResponses[]
 
   @@map("tb_user")
 }
 
+model UserOnLikedPosts {
+  User    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  Post    Post   @relation(fields: [post_id], references: [id])
+  post_id String
+
+  @@id([user_id, post_id])
+  @@map("tb_user_on_posts")
+}
+
 model Post {
-  id          String     @id @unique @default(uuid())
+  id          String             @id @unique @default(uuid())
   title       String
-  slug        String     @unique
+  slug        String             @unique
   description String
   body        String
-  caffeine    Int        @default(0)
-  User        User       @relation(fields: [user_id], references: [id])
+  UsersLiked  UserOnLikedPosts[]
+  User        User               @relation(fields: [user_id], references: [id])
   user_id     String
+  Category    Category[]
   Response    Response[]
 
   @@map("tb_post")
 }
 
+model Category {
+  id   Int    @id @unique @default(autoincrement())
+  name String @unique
+  Post Post[]
+
+  @@map("tb_category")
+}
+
+model UserOnLikedResponses {
+  User        User     @relation(fields: [user_id], references: [id])
+  user_id     String
+  Response    Response @relation(fields: [response_id], references: [id])
+  response_id String
+
+  @@id([user_id, response_id])
+  @@map("tb_user_on_responses")
+}
+
 model Response {
-  id                 String     @id @unique @default(uuid())
+  id                 String                 @id @unique @default(uuid())
   body               String
-  caffeine           Int        @default(0)
-  user               User       @relation(fields: [user_id], references: [id])
-  user_id            String
-  post               Post       @relation(fields: [post_id], references: [id])
+  UsersLiked         UserOnLikedResponses[]
+  post               Post                   @relation(fields: [post_id], references: [id])
   post_id            String
-  Response           Response[] @relation("response_parent")
-  ResponseParent     Response?  @relation("response_parent", fields: [response_parent_id], references: [id])
+  Responses          Response[]             @relation("response_parent")
+  ResponseParent     Response?              @relation("response_parent", fields: [response_parent_id], references: [id])
   response_parent_id String?
 
   @@map("tb_response")
