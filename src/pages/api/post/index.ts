@@ -26,7 +26,7 @@ router.get(async (req, res) => {
         }
     });
 
-    const posts = PostDTO.fromArray(existsPosts);
+    const posts = PostDTO.fromArrayIncludesUser(existsPosts);
 
     return res.json({
         data: { posts }
